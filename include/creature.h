@@ -5,20 +5,24 @@
 #ifndef CREATURE_CREATURE_H
 #define CREATURE_CREATURE_H
 #include <cstdint>
+#include<chrono>
+#include <ctime>
 #include <string>
+#include<random>
 
 namespace edu { namespace vcccd { namespace vc { namespace csv13 {
 
 class Creature
 {
 protected:
-    static constexpr uint32_t DEFAULT_HIT_POINTS = 10;
-    static constexpr uint32_t DEFAULT_STRENGTH = 10;
+    static constexpr uint64_t DEFAULT_HIT_POINTS = 10;
+    static constexpr uint64_t DEFAULT_STRENGTH = 10;
 
 private:
     int strength; // How much damage we can inflict
     int hitpoints; // How much damage we can sustain
 
+// You will need to rewrite the getSpecies() and getDamage()` functions so they are appropriate for each class
 protected:
     int getStrength() const { return strength; }
     int getHitPoints() const { return hitpoints; }
@@ -37,14 +41,21 @@ public:
 
     // Returns amount of damage this creature
     // inflicts in one round of combat
-    virtual int getDamage() const;
+    virtual int getDamage() const; //Already made for overriding
 
     // Returns type of species
-    virtual const std::string &getSpecies() const = 0;
+    virtual const std::string &getSpecies() const = 0; //Already made for overriding *pure virtual*
 };
+
+//        The classes Demon , Elf , and Human should be derived from Creature
+
 
 }}}}
 
-// Include your Human, Cyberdemon, Balrog and Elf declarations here.
+// Include your Human, Cyberdemon, Balrog and Elf declarations here.#include
+#include "Balrog.h"
+#include "CyberDemon.h"
+#include "Human.h"
+#include "Elf.h"
 
 #endif //CREATURE_CREATURE_H
